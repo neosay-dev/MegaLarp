@@ -30,8 +30,9 @@ endif()
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
 # Dear ImGui + Cocos2d-x integration via Geode's built-in CPM
+set(IMGUI_VERSION "v1.91.5")
 CPMAddPackage("gh:matcool/gd-imgui-cocos#main")
 
-target_link_libraries(${PROJECT_NAME} PRIVATE imgui-cocos)
-
 setup_geode_mod(${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME} imgui-cocos)

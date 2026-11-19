@@ -59,7 +59,7 @@ bool Menu::matchesSearch(const char* text) const {
 bool Menu::checkbox(const char* label, bool* value, const char* tooltip, bool marksCheat) {
     if (!matchesSearch(label)) return false;
     bool changed = ImGui::Checkbox(label, value);
-    if (tooltip && ImGui::IsItemHovered(ImGuiHoveredFlags_DelayShort)) {
+    if (tooltip && ImGui::IsItemHovered()) {
         ImGui::SetTooltip("%s", tooltip);
     }
     if (changed) {
