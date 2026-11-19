@@ -1,0 +1,13 @@
+build/
+build-*/
+cmake-build-*/
+.cache/
+.vscode/
+.idea/
+*.geode
+*.dll
+*.so
+*.dylib
+*.pdb
+*.log
+.DS_Store

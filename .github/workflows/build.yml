@@ -1,0 +1,59 @@
+name: Build MegaLarp
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build (${{ matrix.target }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: Win64
+          - os: macos-latest
+            target: MacOS
+          - os: ubuntu-latest
+            target: Android64
+          - os: ubuntu-latest
+            target: Android32
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Geode Mod
+        uses: geode-sdk/build-geode-mod@main
+        id: build
+        with:
+          target: ${{ matrix.target }}
+          sdk: 'latest'
+          combine: true
+
+      - name: Upload Platform Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MegaLarp-${{ matrix.target }}
+          path: ${{ steps.build.outputs.build-output }}
+
+  package:
+    name: Combine Multi-Platform .geode
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Combine Artifacts
+        uses: geode-sdk/build-geode-mod/combine@main
+        id: package
+
+      - name: Upload Combined .geode
+        uses: actions/upload-artifact@v4
+        with:
+          name: MegaLarp-Universal
+          path: ${{ steps.package.outputs.build-output }}

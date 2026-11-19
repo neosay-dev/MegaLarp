@@ -1,0 +1,24 @@
+{
+    "geode": "5.0.0",
+    "gd": {
+        "win": "*",
+        "android": "*",
+        "mac": "*",
+        "ios": "*"
+    },
+    "id": "megalarp.megalarp",
+    "name": "MegaLarp",
+    "version": "v1.0.0",
+    "developer": "MegaLarp Team",
+    "description": "Open-source cross-platform MegaHack alternative for Geometry Dash (2.207-2.209) with ImGui overlay, keybinds, themes, gameplay/visual/creator/QoL hacks.",
+    "tags": [
+        "cheat",
+        "gameplay",
+        "interface",
+        "utility",
+        "editor"
+    ],
+    "links": {
+        "source": "https://github.com/dsn2fvhmn4-lgtm/MegaLarp"
+    }
+}
